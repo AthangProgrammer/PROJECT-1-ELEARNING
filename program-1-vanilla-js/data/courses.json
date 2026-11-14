@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "name": "Full Stack Web Development",
+    "description": "Learn HTML5, CSS3, Modern JavaScript, Node.js, Express, and MongoDB to build production-grade web applications.",
+    "category": "Web Development",
+    "price": 4999,
+    "duration": "12 Weeks",
+    "instructor": "Dr. Sarah Johnson"
+  },
+  {
+    "id": 2,
+    "name": "Python for Data Science & Machine Learning",
+    "description": "Explore NumPy, Pandas, Matplotlib, Scikit-Learn, and statistical analysis for real-world datasets.",
+    "category": "Data Science",
+    "price": 4499,
+    "duration": "10 Weeks",
+    "instructor": "Prof. Amit Verma"
+  },
+  {
+    "id": 3,
+    "name": "Cloud Computing with AWS & Docker",
+    "description": "Hands-on guide to containerization, EC2, S3, Lambda, microservices deployment, and CI/CD pipelines.",
+    "category": "Cloud Computing",
+    "price": 5499,
+    "duration": "8 Weeks",
+    "instructor": "Michael Chang"
+  },
+  {
+    "id": 4,
+    "name": "Responsive UI/UX Design Fundamentals",
+    "description": "Master wireframing, color theory, accessibility (WCAG), and responsive layouts with modern CSS Grid and Flexbox.",
+    "category": "Design",
+    "price": 3499,
+    "duration": "6 Weeks",
+    "instructor": "Elena Gomez"
+  },
+  {
+    "id": 5,
+    "name": "Mobile App Development with Flutter",
+    "description": "Build high-performance cross-platform iOS and Android apps using Dart and the Flutter framework.",
+    "category": "Mobile Development",
+    "price": 4799,
+    "duration": "10 Weeks",
+    "instructor": "David Miller"
+  },
+  {
+    "id": 6,
+    "name": "Database Management with PostgreSQL",
+    "description": "Deep dive into relational database modeling, complex SQL queries, indexing, transactions, and performance tuning.",
+    "category": "Database",
+    "price": 3899,
+    "duration": "8 Weeks",
+    "instructor": "Pooja Sharma"
+  },
+  {
+    "id": 7,
+    "name": "Cybersecurity & Ethical Hacking Basics",
+    "description": "Understand network security principles, threat analysis, cryptography, penetration testing tools, and secure coding.",
+    "category": "Cybersecurity",
+    "price": 5299,
+    "duration": "10 Weeks",
+    "instructor": "Alex Turner"
+  },
+  {
+    "id": 8,
+    "name": "Modern JavaScript Deep Dive",
+    "description": "Master asynchronous JavaScript, closures, promises, async/await, Fetch API, DOM manipulation, and design patterns.",
+    "category": "Web Development",
+    "price": 2999,
+    "duration": "6 Weeks",
+    "instructor": "Dr. Sarah Johnson"
+  }
+]

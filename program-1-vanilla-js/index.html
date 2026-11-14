@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EduPortal - E-Learning Course Portal</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- Application Header -->
+  <header class="app-header">
+    <div class="container header-container">
+      <div class="brand">
+        <span class="brand-icon">🎓</span>
+        <div class="brand-text">
+          <h1>EduPortal</h1>
+          <p class="tagline">Explore Courses &amp; Upgrade Your Skills</p>
+        </div>
+      </div>
+      <div class="header-badge">
+        <span class="badge practical-badge">FSD Lab Assignment &bull; Program 1</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="container main-content">
+    
+    <!-- Controls Section: Search & Category Filter -->
+    <section class="controls-section" aria-label="Course filters and search">
+      <div class="controls-card">
+        <div class="control-group search-group">
+          <label for="searchInput" class="control-label">Search Courses</label>
+          <div class="input-icon-wrapper">
+            <span class="input-icon">🔍</span>
+            <input
+              type="text"
+              id="searchInput"
+              class="form-control"
+              placeholder="Search by course name (e.g. Web, Python)..."
+              autocomplete="off"
+            />
+          </div>
+        </div>
+
+        <div class="control-group filter-group">
+          <label for="categoryFilter" class="control-label">Filter by Category</label>
+          <div class="select-wrapper">
+            <select id="categoryFilter" class="form-control">
+              <option value="ALL">All Categories</option>
+              <!-- Categories populated dynamically via JavaScript -->
+            </select>
+          </div>
+        </div>
+
+        <div class="control-group action-group">
+          <label class="control-label">&nbsp;</label>
+          <button id="resetFiltersBtn" class="btn btn-secondary" type="button" title="Reset search and filters">
+            Reset Filters
+          </button>
+        </div>
+      </div>
+
+      <!-- Filter Stats & Results Count -->
+      <div class="results-meta">
+        <span id="resultsCount" class="results-count" aria-live="polite">Loading courses...</span>
+        <span id="activeFilterBadge" class="active-filter-tag" style="display: none;"></span>
+      </div>
+    </section>
+
+    <!-- Courses Catalog Section -->
+    <section class="courses-section" aria-labelledby="coursesHeading">
+      <div class="section-title-wrapper">
+        <h2 id="coursesHeading" class="section-title">Available Courses</h2>
+        <p class="section-subtitle">Browse through our specialized curriculum</p>
+      </div>
+
+      <!-- Loading State Indicator -->
+      <div id="loadingIndicator" class="state-container loading-state" role="status" aria-live="polite">
+        <div class="spinner" aria-hidden="true"></div>
+        <p>Fetching courses from catalog...</p>
+      </div>
+
+      <!-- Error State Notification -->
+      <div id="coursesErrorBanner" class="alert alert-danger" style="display: none;" role="alert">
+        <span class="alert-icon">⚠️</span>
+        <div class="alert-content">
+          <strong>Failed to load courses:</strong>
+          <span id="coursesErrorMessage">Unable to retrieve course list.</span>
+        </div>
+        <button id="retryFetchBtn" class="btn btn-sm btn-outline-danger" type="button">Retry</button>
+      </div>
+
+      <!-- Empty Results State -->
+      <div id="emptyState" class="state-container empty-state" style="display: none;">
+        <span class="empty-icon">🔎</span>
+        <h3>No Courses Found</h3>
+        <p>No courses matched your search criteria. Try modifying your keywords or resetting filters.</p>
+        <button id="emptyResetBtn" class="btn btn-primary btn-sm" type="button">Clear Filters</button>
+      </div>
+
+      <!-- Dynamic Courses Grid -->
+      <div id="coursesContainer" class="courses-grid" aria-live="polite">
+        <!-- Course cards will be rendered dynamically by JavaScript -->
+      </div>
+    </section>
+
+    <!-- Student Enrollment Form Section -->
+    <section class="enrollment-section" id="enrollmentSection" aria-labelledby="enrollmentHeading">
+      <div class="section-title-wrapper">
+        <h2 id="enrollmentHeading" class="section-title">Course Enrollment</h2>
+        <p class="section-subtitle">Fill in your details to register for your selected course</p>
+      </div>
+
+      <div class="enrollment-card">
+        <!-- Global Form Feedback Alert -->
+        <div id="formGlobalAlert" class="alert" style="display: none;" role="alert" aria-live="assertive">
+          <span id="formAlertIcon" class="alert-icon"></span>
+          <div id="formAlertMessage" class="alert-content"></div>
+        </div>
+
+        <form id="enrollmentForm" novalidate>
+          <div class="form-row">
+            <!-- Student Name Field -->
+            <div class="form-group">
+              <label for="studentName" class="form-label required">Student Full Name</label>
+              <input
+                type="text"
+                id="studentName"
+                name="studentName"
+                class="form-control"
+                placeholder="e.g. John Doe"
+                required
+                aria-describedby="nameError"
+              />
+              <span id="nameError" class="field-error" aria-live="polite"></span>
+            </div>
+
+            <!-- Student Email Field -->
+            <div class="form-group">
+              <label for="studentEmail" class="form-label required">Email Address</label>
+              <input
+                type="email"
+                id="studentEmail"
+                name="studentEmail"
+                class="form-control"
+                placeholder="e.g. john.doe@example.com"
+                required
+                aria-describedby="emailError"
+              />
+              <span id="emailError" class="field-error" aria-live="polite"></span>
+            </div>
+          </div>
+
+          <!-- Course Selection Field -->
+          <div class="form-group">
+            <label for="selectedCourse" class="form-label required">Select Course</label>
+            <select
+              id="selectedCourse"
+              name="selectedCourse"
+              class="form-control"
+              required
+              aria-describedby="courseError"
+            >
+              <option value="">-- Choose a course from list --</option>
+              <!-- Populated dynamically via courses data -->
+            </select>
+            <span id="courseError" class="field-error" aria-live="polite"></span>
+          </div>
+
+          <!-- Selected Course Preview Box (Optional helper) -->
+          <div id="selectedCoursePreview" class="course-preview-box" style="display: none;">
+            <div class="preview-item">
+              <span class="preview-label">Selected:</span>
+              <strong id="previewCourseName">-</strong>
+            </div>
+            <div class="preview-item">
+              <span class="preview-label">Category:</span>
+              <span id="previewCourseCategory" class="badge category-badge">-</span>
+            </div>
+            <div class="preview-item">
+              <span class="preview-label">Fee:</span>
+              <strong id="previewCoursePrice" class="preview-price">-</strong>
+            </div>
+          </div>
+
+          <!-- Form Submit Button -->
+          <div class="form-actions">
+            <button type="submit" id="submitEnrollmentBtn" class="btn btn-primary btn-submit">
+              <span class="btn-text">Complete Enrollment</span>
+              <span class="btn-spinner" style="display: none;" aria-hidden="true"></span>
+            </button>
+            <button type="reset" id="resetFormBtn" class="btn btn-secondary">
+              Clear Form
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Application Footer -->
+  <footer class="app-footer">
+    <div class="container footer-container">
+      <p>&copy; 2026 EduPortal &bull; Full Stack Development College Assignment</p>
+      <p class="footer-note">Built with Vanilla HTML, CSS &amp; JavaScript (Fetch API + DOM Manipulation)</p>
+    </div>
+  </footer>
+
+  <!-- Vanilla JavaScript Application Logic -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
